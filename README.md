@@ -1,5 +1,4 @@
-# Advent Of Code 2023
+# My Advent Of Code 2023 Solutins
 
-My Solutions:
 https://adventofcode.com/2023
 

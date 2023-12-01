@@ -4,6 +4,7 @@ package advent;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 class Day01 {
@@ -23,45 +24,13 @@ class Day01 {
             // line4 = "7pqrstsixteen" -> first = 7, last = 6 -> concat = "76" -> int = 76
 
             var first = "";
-
-            for (int i = 0; i < line.length(); i++) {
-
-                if (Character.isDigit(line.charAt(i))) {
-                    first = String.valueOf(line.charAt(i));
-                } else {
-                    // check if the line starting at index i begins with a spelled digit
-                    for (DIGIT digit : DIGIT.values()) {
-                        if (line.startsWith(digit.spelled, i)) {
-                            first = String.valueOf(digit.value);
-                            break;
-                        }
-                    }
-                }
-
-                if (!first.isEmpty()) {
-                    break;
-                }
+            for (int i = 0; i < line.length() && first.isEmpty(); i++) {
+                first = findDigitAtPosition(line, i). orElse("");
             }
 
             var last = "";
-
-            for (int i = line.length() - 1; i >= 0; i--) {
-
-                if (Character.isDigit(line.charAt(i))) {
-                    last = String.valueOf(line.charAt(i));
-                } else {
-                    // check if the line starting at index i starts with a spelled digit
-                    for (DIGIT digit : DIGIT.values()) {
-                        if (line.startsWith(digit.spelled, i)) {
-                            last = String.valueOf(digit.value);
-                            break;
-                        }
-                    }
-                }
-
-                if (!last.isEmpty()) {
-                    break;
-                }
+            for (int i = line.length() - 1; i >= 0 && last.isEmpty(); i--) {
+                last = findDigitAtPosition(line, i).orElse("");
             }
 
             result.addAndGet(Integer.parseInt(first + last));
@@ -70,6 +39,23 @@ class Day01 {
 
         System.out.println("My result: " + result);
 
+    }
+
+    private static Optional<String> findDigitAtPosition(String line, int i) {
+
+        if (Character.isDigit(line.charAt(i))) {
+            return Optional.of(String.valueOf(line.charAt(i)));
+
+        } else {
+            // check if the line starting at index i begins with a spelled digit
+            for (DIGIT digit : DIGIT.values()) {
+                if (line.startsWith(digit.spelled, i)) {
+                    return Optional.of(String.valueOf(digit.value));
+                }
+            }
+        }
+
+        return Optional.empty();
     }
 
     // Create an Enum which contains for each digit the spelled value and the value itself
@@ -94,6 +80,5 @@ class Day01 {
         }
 
     }
-
 
 }

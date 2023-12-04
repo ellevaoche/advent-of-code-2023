@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
-class Day01 {
+class Day01Part02 {
     public static void main(String ... args) throws Exception {
 
         AtomicInteger result = new AtomicInteger();

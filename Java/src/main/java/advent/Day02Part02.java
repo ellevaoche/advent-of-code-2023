@@ -15,7 +15,7 @@ class Day02Part02 {
         // Define DataStructure for Games
         HashMap<Integer, ArrayList<HashMap<String, Integer>>> games = new HashMap<>();
 
-        // read all Lines from file Day01.txt and map them to the DataStructure
+        // read all Lines from file Day02.txt and map them to the DataStructure
         Files.readAllLines(Path.of("Input/Day02.txt")).forEach(line -> {
 
             //Examples:

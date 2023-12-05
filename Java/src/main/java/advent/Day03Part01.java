@@ -1,6 +1,6 @@
 package advent;
 
-// https://adventofcode.com/2023/day/2
+// https://adventofcode.com/2023/day/3
 
 import java.nio.file.Files;
 import java.nio.file.Path;
